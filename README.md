@@ -68,6 +68,37 @@ npm run preview  # preview the production build
 npm run lint     # oxlint
 ```
 
+## Deploying to GitHub Pages
+
+The repo is preconfigured to publish to GitHub Pages:
+
+- **Base path** — `vite.config.ts` sets `base: '/cloud-cheatsheet/'` for production builds, so assets resolve at `https://<owner>.github.io/cloud-cheatsheet/`. (If you rename the repo, update this base path to match.)
+- **CI workflow** — `.github/workflows/deploy.yml` builds the site and deploys it via the official Pages actions (`configure-pages` → `upload-pages-artifact` → `deploy-pages`) on every push to `main`.
+
+### One-time setup (requires repo Admin)
+
+Enabling Pages needs Admin on the repository, so a repo owner/admin must do this once:
+
+1. Go to **Settings → Pages**.
+2. Under **Build and deployment → Source**, select **GitHub Actions**.
+
+That's it. The next push to `main` (or a manual run via **Actions → Deploy to GitHub Pages → Run workflow**) will build and publish the site. If a run failed before Pages was enabled, just **re-run** it from the Actions tab.
+
+The published URL will be: **https://<owner>.github.io/cloud-cheatsheet/**
+
+> Note: the workflow also passes `enablement: true` to `configure-pages`, which auto-enables Pages when the CI token has permission. On many repos that permission isn't granted, so the manual step above is the reliable path.
+
+### Alternative: deploy to a `gh-pages` branch
+
+If you prefer branch-based Pages instead of the Actions workflow:
+
+```bash
+npm run build
+npx gh-pages -d dist   # pushes dist/ to the gh-pages branch
+```
+
+Then set **Settings → Pages → Source → Deploy from a branch → `gh-pages` / root**.
+
 ## Adding or editing services
 
 1. Open the relevant file in `src/data/services/` (e.g. `databases.ts`).

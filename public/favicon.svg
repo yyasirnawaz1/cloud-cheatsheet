@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10151f"/>
+      <stop offset="1" stop-color="#070a12"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <rect x="0.5" y="0.5" width="63" height="63" rx="13.5" fill="none" stroke="#2b3446" stroke-width="1"/>
+  <!-- Azure cloud (left) -->
+  <path d="M13 40a8 8 0 0 1 1.4-15.9 11 11 0 0 1 20.3-2.2A8.5 8.5 0 0 1 33 40z" fill="#2b88d8" opacity="0.95"/>
+  <!-- AWS cloud (right) -->
+  <path d="M31 44a7 7 0 0 1 1.2-13.9 9.6 9.6 0 0 1 17.8-1.9A7.4 7.4 0 0 1 49 44z" fill="#f0932b" opacity="0.95"/>
+  <!-- exchange arrows -->
+  <path d="M27 30h9m0 0-2.6-2.6M36 30l-2.6 2.6" fill="none" stroke="#0b0f1a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

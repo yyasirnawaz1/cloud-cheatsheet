@@ -1,0 +1,83 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Brand accents (used sparingly, per cloud) */
+  --color-azure: #2b88d8;
+  --color-azure-deep: #0a4d8c;
+  --color-aws: #f0932b;
+  --color-aws-deep: #b76e17;
+
+  /* Enterprise neutral surface scale (cool graphite) */
+  --color-ink-950: #070a12;
+  --color-ink-900: #0b0f1a;
+  --color-ink-850: #10151f;
+  --color-ink-800: #161c28;
+  --color-ink-700: #202838;
+  --color-ink-600: #2b3446;
+
+  /* Professional primary (used for app chrome / focus) */
+  --color-brand: #4f7cff;
+
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  --radius-card: 0.625rem;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-ink-950);
+  background-image:
+    linear-gradient(180deg, rgba(43, 136, 216, 0.05) 0%, transparent 22%),
+    linear-gradient(0deg, rgba(240, 147, 43, 0.035) 0%, transparent 18%);
+  background-attachment: fixed;
+  color: #dfe5ee;
+  font-family: var(--font-sans);
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  letter-spacing: -0.006em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Refined thin scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.28) transparent;
+}
+*::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.24);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.4);
+  background-clip: padding-box;
+}
+
+::selection {
+  background: rgba(79, 124, 255, 0.35);
+}
+
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+  .no-print {
+    display: none !important;
+  }
+}

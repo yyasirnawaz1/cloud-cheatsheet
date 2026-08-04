@@ -4,6 +4,7 @@ import { mappings as allMappings } from './data';
 import { categories } from './data/categories';
 import { matchesQuery } from './lib/search';
 import { useProgress } from './hooks/useProgress';
+import { useTheme } from './hooks/useTheme';
 import type { ViewId } from './types';
 import { Header } from './components/Header';
 import { CategoryFilter } from './components/CategoryFilter';
@@ -24,6 +25,7 @@ export default function App() {
   const [category, setCategory] = useState<CategoryId | 'all'>('all');
   const [selection, setSelection] = useState<Selection | null>(null);
   const progress = useProgress();
+  const { theme, toggle: toggleTheme } = useTheme();
 
   const queryFiltered = useMemo(
     () => allMappings.filter((m) => matchesQuery(m, query)),
@@ -90,6 +92,8 @@ export default function App() {
         understoodCount={progress.count}
         totalSides={totalSides}
         resultCount={queryFiltered.length}
+        theme={theme}
+        onToggleTheme={toggleTheme}
       />
 
       <main className="mx-auto max-w-7xl px-4 py-6">

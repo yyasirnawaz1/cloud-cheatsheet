@@ -1,4 +1,5 @@
 import type { ViewId } from '../types';
+import type { Theme } from '../hooks/useTheme';
 
 interface HeaderProps {
   view: ViewId;
@@ -8,6 +9,8 @@ interface HeaderProps {
   understoodCount: number;
   totalSides: number;
   resultCount: number;
+  theme: Theme;
+  onToggleTheme: () => void;
 }
 
 const views: { id: ViewId; label: string; hint: string }[] = [
@@ -26,6 +29,8 @@ export function Header({
   understoodCount,
   totalSides,
   resultCount,
+  theme,
+  onToggleTheme,
 }: HeaderProps) {
   const pct = totalSides === 0 ? 0 : Math.round((understoodCount / totalSides) * 100);
   return (
@@ -39,7 +44,7 @@ export function Header({
               </svg>
             </div>
             <div>
-              <h1 className="text-base font-bold leading-tight text-white">
+              <h1 className="text-base font-bold leading-tight text-slate-100">
                 Cloud Cheat Sheet
                 <span className="ml-2 hidden rounded border border-ink-700 px-1.5 py-0.5 text-[10px] font-semibold tracking-wide text-slate-400 sm:inline">
                   AZURE ⇄ AWS
@@ -67,6 +72,25 @@ export function Header({
               </div>
               <span className="text-xs font-semibold text-emerald-400">{pct}%</span>
             </div>
+
+            <button
+              type="button"
+              onClick={onToggleTheme}
+              title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              className="no-print flex h-9 w-9 items-center justify-center rounded-lg border border-ink-700 bg-ink-850/80 text-slate-300 transition-colors hover:border-slate-500 hover:text-slate-100"
+            >
+              {theme === 'dark' ? (
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <circle cx="12" cy="12" r="4" />
+                  <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+              )}
+            </button>
           </div>
         </div>
 
@@ -99,7 +123,7 @@ export function Header({
                 className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
                   view === v.id
                     ? 'bg-brand text-white shadow-sm'
-                    : 'text-slate-300 hover:bg-ink-800 hover:text-white'
+                    : 'text-slate-300 hover:bg-ink-800 hover:text-slate-100'
                 }`}
               >
                 {v.label}

@@ -7,7 +7,7 @@
   --color-aws: #f0932b;
   --color-aws-deep: #b76e17;
 
-  /* Enterprise neutral surface scale (cool graphite) */
+  /* Enterprise neutral surface scale (cool graphite) — dark defaults */
   --color-ink-950: #070a12;
   --color-ink-900: #0b0f1a;
   --color-ink-850: #10151f;
@@ -23,8 +23,62 @@
   --radius-card: 0.625rem;
 }
 
+/* ------------------------------------------------------------------ */
+/* Theme tokens. Default = dark. [data-theme="light"] flips the        */
+/* neutral scales + a few accents so utility classes adapt without     */
+/* per-component dark: variants.                                       */
+/* ------------------------------------------------------------------ */
 :root {
   color-scheme: dark;
+  --app-text: #dfe5ee;
+  --app-bg: var(--color-ink-950);
+  --app-bg-image:
+    linear-gradient(180deg, rgba(43, 136, 216, 0.05) 0%, transparent 22%),
+    linear-gradient(0deg, rgba(240, 147, 43, 0.035) 0%, transparent 18%);
+  --scroll-thumb: rgba(148, 163, 184, 0.24);
+  --scroll-thumb-hover: rgba(148, 163, 184, 0.4);
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+  --app-text: #1e293b;
+  --app-bg-image:
+    linear-gradient(180deg, rgba(43, 136, 216, 0.08) 0%, transparent 20%),
+    linear-gradient(0deg, rgba(240, 147, 43, 0.06) 0%, transparent 16%);
+  --scroll-thumb: rgba(71, 85, 105, 0.3);
+  --scroll-thumb-hover: rgba(71, 85, 105, 0.5);
+
+  /* Light surfaces mapped onto the ink scale */
+  --color-ink-950: #f3f5fb;
+  --color-ink-900: #eef1f8;
+  --color-ink-850: #ffffff;
+  --color-ink-800: #e9edf4;
+  --color-ink-700: #d6dce7;
+  --color-ink-600: #c3ccdb;
+
+  /* Invert the neutral slate scale so text/surfaces adapt */
+  --color-slate-50: #020617;
+  --color-slate-100: #0f172a;
+  --color-slate-200: #1e293b;
+  --color-slate-300: #334155;
+  --color-slate-400: #475569;
+  --color-slate-500: #64748b;
+  --color-slate-600: #94a3b8;
+  --color-slate-700: #cbd5e1;
+  --color-slate-800: #e2e8f0;
+  --color-slate-900: #f1f5f9;
+  --color-slate-950: #f8fafc;
+
+  /* Darken bright accent text for contrast on light backgrounds */
+  --color-sky-300: #0369a1;
+  --color-sky-400: #0284c7;
+  --color-amber-300: #b45309;
+  --color-amber-400: #d97706;
+  --color-emerald-300: #047857;
+  --color-emerald-400: #059669;
+  --color-red-300: #dc2626;
+  /* Light tint for the "understood" state fills */
+  --color-emerald-950: #ecfdf5;
 }
 
 html,
@@ -35,36 +89,35 @@ body,
 
 body {
   margin: 0;
-  background-color: var(--color-ink-950);
-  background-image:
-    linear-gradient(180deg, rgba(43, 136, 216, 0.05) 0%, transparent 22%),
-    linear-gradient(0deg, rgba(240, 147, 43, 0.035) 0%, transparent 18%);
+  background-color: var(--app-bg);
+  background-image: var(--app-bg-image);
   background-attachment: fixed;
-  color: #dfe5ee;
+  color: var(--app-text);
   font-family: var(--font-sans);
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   letter-spacing: -0.006em;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* Refined thin scrollbars */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(148, 163, 184, 0.28) transparent;
+  scrollbar-color: var(--scroll-thumb) transparent;
 }
 *::-webkit-scrollbar {
   width: 9px;
   height: 9px;
 }
 *::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.24);
+  background: var(--scroll-thumb);
   border-radius: 9999px;
   border: 2px solid transparent;
   background-clip: padding-box;
 }
 *::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.4);
+  background: var(--scroll-thumb-hover);
   background-clip: padding-box;
 }
 

@@ -17,7 +17,7 @@ export function CategoryFilter({ categories, active, counts, onSelect }: Categor
         className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
           active === 'all'
             ? 'border-slate-100 bg-slate-100 text-slate-900'
-            : 'border-slate-700 bg-slate-900/60 text-slate-300 hover:border-slate-500 hover:text-white'
+            : 'border-slate-700 bg-slate-900/60 text-slate-300 hover:border-slate-500 hover:text-slate-100'
         }`}
       >
         All <span className="opacity-60">{total}</span>
@@ -33,7 +33,7 @@ export function CategoryFilter({ categories, active, counts, onSelect }: Categor
             className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
               active === c.id
                 ? 'border-slate-100 bg-slate-100 text-slate-900'
-                : 'border-slate-700 bg-slate-900/60 text-slate-300 hover:border-slate-500 hover:text-white'
+                : 'border-slate-700 bg-slate-900/60 text-slate-300 hover:border-slate-500 hover:text-slate-100'
             }`}
           >
             <span aria-hidden className="mr-1">
